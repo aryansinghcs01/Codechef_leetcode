@@ -1,7 +1,14 @@
-#include <stdio.h>
+
+#include <iostream>
+#include <cstdlib>
+using namespace std;
 
 int main() {
-	// your code goes here
+    int X, Y;
+    cin >> X >> Y;
 
+    cout << abs(X - Y) - 1 << endl;
+
+    return 0;
 }
 
