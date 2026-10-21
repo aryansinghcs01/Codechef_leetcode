@@ -1,0 +1,27 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;
+
+    while (T--) {
+        long long N;
+        int D;
+        cin >> N >> D;
+
+        while (true) {
+            string s = to_string(N);
+
+            if (s.find(char('0' + D)) == string::npos) {
+                cout << N << '\n';
+                break;
+            }
+
+            N++;
+        }
+    }
+
+    return 0;
+}
