@@ -1,0 +1,38 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int N;
+        long long M;
+        cin >> N >> M;
+
+        vector<int> A(N);
+        for (int i = 0; i < N; i++) {
+            cin >> A[i];
+        }
+
+        sort(A.begin(), A.end());
+
+        long long people = 0;
+        int groups = 0;
+
+        for (int i = 0; i < N; i++) {
+            people += A[i];
+
+            if (people * (people - 1) / 2 <= M) {
+                groups++;
+            } else {
+                break;
+            }
+        }
+
+        cout << groups << '\n';
+    }
+
+    return 0;
+}
