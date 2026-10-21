@@ -1,0 +1,30 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int N, S;
+        cin >> N >> S;
+
+        int ans = INT_MAX;
+
+        for (int C = 0; C <= N; C++) {
+            int W = 4 * C - S;
+
+            if (W >= 0 && C + W <= N) {
+                ans = min(ans, C + W);
+            }
+        }
+
+        if (ans == INT_MAX)
+            cout << -1 << '\n';
+        else
+            cout << ans << '\n';
+    }
+
+    return 0;
+}
