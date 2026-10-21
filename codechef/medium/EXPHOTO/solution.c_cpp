@@ -1,0 +1,65 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int N, K;
+        cin >> N >> K;
+
+        vector<int> P(N);
+        for (int i = 0; i < N; i++) {
+            cin >> P[i];
+        }
+
+        if (K == 1) {
+            bool sorted = true;
+
+            for (int i = 1; i < N; i++) {
+                if (P[i - 1] < P[i]) {
+                    sorted = false;
+                    break;
+                }
+            }
+
+            cout << (sorted ? 0 : -1) << '\n';
+            continue;
+        }
+
+        vector<int> bit(N + 1, 0);
+
+        auto query = [&](int idx) {
+            int sum = 0;
+            while (idx > 0) {
+                sum += bit[idx];
+                idx -= idx & -idx;
+            }
+            return sum;
+        };
+
+        auto update = [&](int idx) {
+            while (idx <= N) {
+                bit[idx]++;
+                idx += idx & -idx;
+            }
+        };
+
+        long long ans = 0;
+
+        for (int x : P) {
+            int cnt = query(x - 1);
+            ans += (cnt + K - 2) / (K - 1);
+            update(x);
+        }
+
+        cout << ans << '\n';
+    }
+
+    return 0;
+}
